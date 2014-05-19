@@ -23,8 +23,8 @@ end
 
 
 
-def legislator_by_zipcode(zipcode)
-	legislators = Sunlight::Congress::Legislator.by_zipcode
+def legislators_by_zipcode(zipcode)
+	legislators = Sunlight::Congress::Legislator.by_zipcode(zipcode)
 end
 
 
@@ -44,14 +44,16 @@ end
 
 puts "EventManager Initilized."
 
-contents = CSV.open "attendees_small.csv", headers: true, header_converters: :symbols
+contents = CSV.open 'attendees_small.csv', headers: true, header_converters: :symbols
 
 template_letter = File.read "form_letter.erb"
+
 erb_template = ERB.new template_letter
 
 
 
 contents.each do |row|
+
 	id = row[0]
 	
 	name = row[:first_name]
@@ -64,8 +66,6 @@ contents.each do |row|
 
 	form_letter = erb_template.result(binding)
 
-	save_thank_you_letters(id, form_letter)
-
-
+	save_thank_you_letters(id,form_letter)
 
 end
