@@ -44,7 +44,7 @@ end
 
 puts "EventManager Initilized."
 
-contents = CSV.open 'attendees_small.csv', headers: true, header_converters: :symbols
+contents = CSV.open 'event_attendees.csv', headers: true, header_converters: :symbols
 
 template_letter = File.read "form_letter.erb"
 
